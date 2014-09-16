@@ -2,39 +2,45 @@ package cn.north.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import cn.north.bean.Person;
 import cn.north.service.PersonService;
 
+@Transactional
 public class PersonServiceBean implements PersonService {
-
+	@Resource SessionFactory sessionFactory;
+		
 	@Override
 	public void save(Person person) {
-		// TODO Auto-generated method stub
-
+		sessionFactory.getCurrentSession().persist(person);
 	}
 
 	@Override
 	public void update(Person person) {
-		// TODO Auto-generated method stub
-
+		sessionFactory.getCurrentSession().merge(person);
 	}
-
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 	@Override
 	public Person getPerson(Integer personid) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Person)sessionFactory.getCurrentSession().get(Person.class, personid);
 	}
 
 	@Override
-	public void delete(Integer personid) {
-		// TODO Auto-generated method stub
-
+	public void delete(Integer personid) {		
+		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().load(Person.class, personid));		
 	}
-
+	
+	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Person> getPersons() {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().createQuery("from Person").list();		
 	}
 
 }
