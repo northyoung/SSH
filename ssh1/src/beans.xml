@@ -50,4 +50,6 @@
 	<tx:annotation-driven transaction-manager="txManager"/>
 	<bean id="personService" class="cn.north.service.impl.PersonServiceBean"/>
 	
+	<bean name="/person/list" class="cn.north.web.action.PersonAction"/>
+	<bean name="/person/manage" class="cn.north.web.action.PersonManageAction"/>
 </beans>
