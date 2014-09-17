@@ -2,6 +2,11 @@ package cn.north.web.formbean;
 
 import org.apache.struts.action.ActionForm;
 
+/**
+ * 带有请求参数 method=add name 和 id
+ * @author young
+ *
+ */
 public class PersonForm extends ActionForm{
 	private Integer id;
 	private String name;
