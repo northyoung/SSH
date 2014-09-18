@@ -16,6 +16,6 @@
         timeToLiveSeconds="180"
         diskPersistent="false"
         diskExpiryThreadIntervalSeconds="60"/>
-	<cache name="cn.itcast.bean.Person" maxElementsInMemory="100" eternal="false"
+	<cache name="cn.north.bean.Person" maxElementsInMemory="100" eternal="false"
     overflowToDisk="true" timeToIdleSeconds="300" timeToLiveSeconds="600" diskPersistent="false"/>
 </ehcache>
