@@ -28,6 +28,12 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 	     <property name="dataSource" ref="dataSource"/>
 		 <property name="mappingResources">
+		 <!-- 
+		 如果配置文件过多，可以采用name="mappingDirectoryLocations" 方式简化
+ 			<list>  
+				<value>classpath:com/bm/ips/dao/entity</value>  
+			</list>  
+		 -->
 		    <list>
 		      <value>cn/north/bean/Person.hbm.xml</value>
 		    </list>
